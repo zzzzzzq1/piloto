@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block titulo %} Lista de Alunos {% endblock %}
+
+{% block conteudo %}
+<table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Matrícula</th>
+            <th scope="col">Curso</th>
+            <th scope="col">Turma</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for indice, item in lista %}
+        <tr>
+            <td>{{ indice }}</td>
+            <td>{{ item.nome }}</td>
+            <td>{{ item.matricula }}</td>
+            <td>{{ item.curso }}</td>
+            <td>{{ item.turma }}</td>
+            <td>
+                <a href="{% url 'editar_aluno' indice %}" class="btn btn-warning">Alterar</a>
+                <a href="{% url 'excluir_aluno' indice %}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja remover este registro?');">Excluir</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
